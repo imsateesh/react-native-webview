@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar, StyleSheet, Text, View, WebView, Image } from 'react-native';
+import { StatusBar, StyleSheet, Text, View, WebView, Image, ActivityIndicator } from 'react-native';
 import { Constants } from 'expo'; // Import expo modules
 
 import renderIf from './renderIf';
@@ -18,24 +18,22 @@ export default class App extends React.Component {
 
         setTimeout(function(){
             that.setState({isLoading: false});
-        }, 2500);
+        }, 5000);
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar barStyle='dark-content'/>
+                <StatusBar barStyle='light-content'/>
 
                 <WebView
-                    source={{uri: 'http://sabjicity.com/dev/'}}
+                    source={{uri: 'https://needan-b1674.firebaseapp.com/#!/home'}}
                     style={{width: window.width, height: window.height}}
                 />
 
                 {renderIf(this.state.isLoading === true)(
                     <View style={styles.webViewLoader}>
-                        <Image
-                          source={require('./img/logo.png')}
-                        />
+                        <ActivityIndicator size='large' color='#ffffff'/>
                     </View>
                 )}
             </View>
@@ -54,7 +52,7 @@ const styles = StyleSheet.create({
         width: window.width,
         height: window.height,
         position: 'absolute',
-        backgroundColor: '#fff',
+        backgroundColor: '#4D81F4',
         alignItems: 'center',
         justifyContent: 'center',
     }
